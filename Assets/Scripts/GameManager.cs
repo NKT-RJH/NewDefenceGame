@@ -92,6 +92,7 @@ public class GameManager : MonoBehaviour
 		yield return new WaitForSeconds(2);
 
 		SaveScore();
+		FindObjectOfType<Ranking>().Sort_And_Save();
 
 		SceneManager.LoadScene("End");
 	}

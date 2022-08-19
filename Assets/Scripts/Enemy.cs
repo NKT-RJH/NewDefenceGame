@@ -6,6 +6,7 @@ using System.Collections.Generic;
 
 public class Enemy : MonoBehaviour
 {
+	public int code;
 	public int number;
 	public int hp;
 	public int gold;

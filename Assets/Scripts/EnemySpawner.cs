@@ -12,7 +12,7 @@ public class EnemySpawner : MonoBehaviour
 	public float spawnTime = 0f;
 	public float restTime = 0;
 
-	private bool rest = false;
+	public bool rest = false;
 
 	// 이거 만들기!!
 	//public int prepareTime
@@ -25,6 +25,8 @@ public class EnemySpawner : MonoBehaviour
 	public Item item;
 
 	private float allTime = 0f;
+
+	public int code = 0;
 
 	public List<Stage> stages = new List<Stage>();
 
@@ -53,7 +55,12 @@ public class EnemySpawner : MonoBehaviour
 
 	private void Update()
 	{
-		if (gameManager.gameEnd || gameManager.gameOver || gameManager.pause || rest) return;
+		if (gameManager.gameEnd || gameManager.gameOver || gameManager.pause) return;
+
+		allTime += Time.deltaTime;
+		stageTimeText.text = string.Format("{0}분 {1}초", (int)allTime / 60, (int)allTime % 60);
+
+		if (rest) return;
 
 		if (restTime > 0)
 		{
@@ -62,13 +69,11 @@ public class EnemySpawner : MonoBehaviour
 
 		leastTime -= Time.deltaTime;
 		spawnTime += Time.deltaTime;
-		allTime += Time.deltaTime;
 
 		fazeText.text = string.Format("Wave {0}", faze + 1);
 		stageText.text = string.Format("Stage {0}", stage + 1);
 
 		fazeTimeText.text = string.Format("{0}분 {1}초", (int)leastTime / 60, (int)leastTime % 60);
-		stageTimeText.text = string.Format("{0}분 {1}초", (int)allTime / 60, (int)allTime % 60);
 		
 		if (leastTime <= 0)
 		{
@@ -125,7 +130,9 @@ public class EnemySpawner : MonoBehaviour
 				else
 				{
 					stages[stage].fazes[faze].enemyCount[random]--;
-					enemys.Add(Instantiate(enemyPrefabs[random]).transform);
+					GameObject game = Instantiate(enemyPrefabs[random]);
+					game.transform.GetChild(0).GetComponent<Enemy>().code = code++;
+					enemys.Add(game.transform);
 					break;
 				}
 			}
@@ -154,7 +161,9 @@ public class EnemySpawner : MonoBehaviour
 		for (int count = 0; count < 3; count++)
 		{
 			stages[stage].fazes[faze].enemyCount[0]--;
-			enemys.Add(Instantiate(enemyPrefabs[0]).transform);
+			GameObject game = Instantiate(enemyPrefabs[0]);
+			game.transform.GetChild(0).GetComponent<Enemy>().code = code++;
+			enemys.Add(game.transform);
 			yield return new WaitForSeconds(0.3f);
 		}
 	}

@@ -21,7 +21,7 @@ public class Title : MonoBehaviour
 
 	public void GameStart()
 	{
-		SceneManager.LoadScene("Fight");
+		SceneManager.LoadScene("Trailer");
 	}
 
 	public void Help()

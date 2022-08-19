@@ -5925,7 +5925,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 10
-  gold: 1000
+  gold: 30
   goldPower: 1
   gameOver: 0
   gameEnd: 0
@@ -6288,6 +6288,7 @@ MonoBehaviour:
   leastTime: 0
   spawnTime: 0
   restTime: 0
+  rest: 0
   fazeText: {fileID: 411094829}
   fazeTimeText: {fileID: 1524230972}
   stageText: {fileID: 980576691}
@@ -6295,7 +6296,16 @@ MonoBehaviour:
   nextFaze: {fileID: 1447933989}
   gameManager: {fileID: 522216950}
   item: {fileID: 191775500}
+  code: 0
   stages:
+  - fazes:
+    - enemyCount: 03000000010000000100000001000000
+      spawnTime: 1
+      fazeTime: 10
+    - enemyCount: 03000000010000000100000001000000
+      spawnTime: 1
+      fazeTime: 10
+    restTime: 10
   - fazes:
     - enemyCount: 03000000010000000100000001000000
       spawnTime: 1
@@ -14784,6 +14794,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1575925667}
   m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1618496175
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1618496177}
+  - component: {fileID: 1618496176}
+  m_Layer: 0
+  m_Name: CheatKey
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1618496176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1618496175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c34da3abedbad94e9bc015f89ef92a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 522216950}
+  enemySpawner: {fileID: 582857329}
+--- !u!4 &1618496177
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1618496175}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1642178008
 GameObject:
