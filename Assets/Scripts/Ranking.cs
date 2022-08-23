@@ -23,14 +23,23 @@ public class Ranking : MonoBehaviour
 		foreach (string temporary in rankings)
 		{
 			string[] splited = temporary.Split(',');
-
+			if (splited.Length <= 1) continue;
 			me.ranks.Add(new Rank(splited[0], int.Parse(splited[1])));
 		}
 	}
 
-	private void Start()
+	private void Awake()
 	{
-		DontDestroyOnLoad(gameObject);
+		var obj = FindObjectsOfType<Ranking>();
+
+		if (obj.Length == 1)
+		{
+			DontDestroyOnLoad(gameObject);
+		}
+		else
+		{
+			Destroy(gameObject);
+		}
 	}
 
 	public void Sort_And_Save()
@@ -43,6 +52,7 @@ public class Ranking : MonoBehaviour
 			save = string.Format("{0}/{1}", save, rank.ToString());
 		}
 		PlayerPrefs.SetString("SaveFile", save);
+		print(save);
 	}
 }
 
